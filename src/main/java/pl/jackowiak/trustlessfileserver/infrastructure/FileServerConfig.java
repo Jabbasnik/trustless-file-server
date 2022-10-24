@@ -7,6 +7,9 @@ import pl.jackowiak.trustlessfileserver.domain.ports.in.ServerFiles;
 import pl.jackowiak.trustlessfileserver.domain.ports.in.StoreFile;
 import pl.jackowiak.trustlessfileserver.domain.ports.out.FileServerRepository;
 
+/**
+ * Spring related configuration.
+ */
 @Configuration
 public class FileServerConfig {
 

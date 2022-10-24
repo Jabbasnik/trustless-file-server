@@ -9,6 +9,9 @@ import static java.util.stream.Collectors.toCollection;
 import static org.apache.commons.codec.binary.Hex.encodeHexString;
 import static pl.jackowiak.trustlessfileserver.domain.model.MerkleUtils.logDebug;
 
+/**
+ * The Merkle tree.
+ */
 public final class MerkleTree {
 
     private final MerkleTreeElement root;

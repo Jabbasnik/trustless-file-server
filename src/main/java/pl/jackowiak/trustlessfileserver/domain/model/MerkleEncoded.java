@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+/**
+ * Represents piece stored in persistence layer.
+ */
 public final class MerkleEncoded {
     private final EncodingAlgo encodingAlgo;
     private final byte[] encodedContent;

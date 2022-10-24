@@ -8,6 +8,9 @@ import java.util.ArrayDeque;
 import static java.lang.String.format;
 import static java.util.Collections.singletonList;
 
+/**
+ * The merkle utils.
+ */
 public final class MerkleUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger(MerkleUtils.class);

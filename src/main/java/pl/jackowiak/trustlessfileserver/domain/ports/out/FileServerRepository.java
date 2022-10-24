@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * The repository layer used to store and retrieve file server data.
+ */
 public interface FileServerRepository {
     PieceHash persistPieces(PersistPiece persistPiece);
 

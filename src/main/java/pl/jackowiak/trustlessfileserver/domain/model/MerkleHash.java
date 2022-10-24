@@ -6,6 +6,9 @@ import java.util.StringJoiner;
 
 import static pl.jackowiak.trustlessfileserver.domain.model.HashingAlgo.SHA_256;
 
+/**
+ * The type holding information about hash.
+ */
 public final class MerkleHash {
     private final HashingAlgo hashingAlgo;
     private final byte[] hash;

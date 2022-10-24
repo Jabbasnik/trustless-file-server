@@ -3,13 +3,15 @@
 ## Requirements:
 `Java 17`
 
+---
+
 ## Running the app
 
-Note that by default, if no path is specified application will run with default file (*icons_rgb_circle.png*).
+Note that by default, if no path is specified application will run with default file (*pug-in-space.jpg*).
 
 ### 1. Quick run using gradle
 ```
-gradle bootRun -Pargs="--filePath=FULL_PATH_TO_FILE"
+./gradlew bootRun -Pargs="--filePath=FULL_PATH_TO_FILE"
 ```
 
 ### 2. Running using jar directly
@@ -28,7 +30,6 @@ Run gradle tests:
 ```
 
 ---
-
 
 ## Description
 Following repository contains a proof of concept of trustless file server. 
@@ -54,11 +55,11 @@ Each piece proof of inclusion is calculated basing on construction of Merkle Pro
 
 ### Examples
 
-*The example responses below are based on the file `icons_rgb_circle.png` provided with the specification as a test case*
+*The example responses below are based on the file `pug-in-space.jpg`*
 
 #### GET /hashes
 
-This endpoint should return a json list of the merkle hashes and number of 1KB pieces of the files this server is serving. In our case this will be a singleton array.
+This endpoint returns a json list of the merkle hashes and number of 1KB pieces of the files this server is serving. In our case this will be a singleton array.
 
 Example:
 ```sh
@@ -67,8 +68,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 
 ```json
 [{
-  "hash": "9b39e1edb4858f7a3424d5a3d0c4579332640e58e101c29f99314a12329fc60b",
-  "pieces": 17
+  "hash": "3bbf3e0a2762bc092b329250638ac25bce4ef402cdf8a911ce5089304506d6c2",
+  "pieces": 136
 }]
 ```
 
@@ -90,18 +91,21 @@ The returned object will contain two fields:
 
 Example:
 ```sh
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/piece/9b39e1edb4858f7a3424d5a3d0c4579332640e58e101c29f99314a12329fc60b/8
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/piece/3bbf3e0a2762bc092b329250638ac25bce4ef402cdf8a911ce5089304506d6c2/0
 ```
 
 ```json
 {
-  "content": "1wSDXYz+dPEXQP9oAYKE7Tz5ttGgCYkD3ile/OXpP4AAAPTqv+BlsRiHgknDtgQv/orRny7+AhAAgB7a+tKLxbYEp8bkJiY7bdm/L7n35ek/QN/NOQMAGYi+8c17X7AQLf8MUxOjP83+B+jzn71XLs+ZAgQZiKkxO7QCtffz27kjyYu/zP0HGAwtQJCJGA36zFtvWIgWSrWF646n/wACAFBzIfnqL7qTZGiXFC/+uvPpZ0Z/AvTfpW4AmL9yedpaQD5iKpDRoO0q/lMc/an9B2Ag5roBwDpAXuI8wLOnTlqItgSABEd/xsVf97/+xocLMCACAGQoxkkaDdqGz2m8e3YjNXc+1fsPMCDfLQ0As9YD8vLM735jNGjDpdj7Hxd/Gf0JMDAzSwOAUaCQoWdPn3QeoKHi4i+jPwGogxYgyPkPgOefK3YYDdpITyfYouXiL4CBe6AFyG3AkKl4ymw0aLPErkyK7T93P/+imL923QcMMDhagIAFMRo0Wk5ohij+Y1pTam5+OOXDBWgALUBAt9jcaTRoY6Q4oenu+S9d/AUweHNLA8C09YC8xbjJ7a93LMSARTuWi78AqMP8lcsPBACAYvuvj3VnzzM42xK8+CtGf9676KgZQFMsBoA5SwGEnSffNhp0QOJehrikLTV6/wEa4cIDAWBxOwAg2k/iUDD9t83oTwD68b/1S/71VcsBhK0vvZjkGMomi10XF38BUKO5lQKABk3gB8+89Ua3JYX+SPHpf7jj6T9AowMAwA9iNOgOrUACwEaK/08/M/oToDm+WykATFsXYKkYDRo7AdQr1Yu/tP8ANMrMSgEA4CHbXv2F0aB1B4AER3/euzhb3P/6Gx8uQHOsuAPgDACwomdPnzQatCYRrmKnJTV3PtX7D9Ak81cur7gD8J2lAVYS7SnPnjppIWqQYu9/XPxl9CdAc9kBAFYlLqhKdVLNoDz10590R66mRu8/QONcWDEAzF+5bAcAeKxnfvcbo0F76GkXfwEwAMsPAc9aEuBxYjSo8wAbF2uY4mVrdz//opi/dt0HDNAs00v/j83L/p92AViXexdniv+z76VsC7mRf/mnYuj557J4v3FgdcdbbxTX3nnPF38DUh39efPDKR8uQPM8UOMPPS4dAE8WTzu/f/NEVu95+PDLxdZDB3z4G5DieYq757908RdAM808LgDYAYB1iHnnNz86k9V73vn7t7uHWFm7CE8p7hg5/AvQWHOPCwAmAcE6RetDXH6Ui2hfifMArN22V9Mc/RmtgAA0z/yVy48NAHOWCNbv+jvvdaeg5CJGg25/veODX4OYohTrlmIABqCRHno6OfS4dACsTfQ/53Y4dvuvj3Vvs2V1thn9CQ==",
-  "proof": [
-    "6a10a0b8c1bd3651cba6e5604b31df595e965be137650d296c05afc1084cfe1f", // sibling hash
-    "956bf86d100b2f49a8d057ebafa85b8db89a0f19d5627a1226fea1cb3e23d3f3", // uncle hash
-    "04284ddea22b003e6098e7dd1a421a565380d11530a35f2e711a8dd2b9b5e7f8", // uncle's uncle hash
-    "c66a821b749e0576e54b89dbac8f71211a508f7916e3d6235900372bed6c6c22", // etc.
-    "a8bd48117723dee92524c25730f9e08e5d47e78c87d17edb344d4070389d049e"  // child of root
+  "content": "/9j/4QC8RXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABJGQEA6AMAAEkZAQDoAwAABgAAkAcABAAAADAyMTABkQcABAAAAAECAwAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAAEAAADoAQAAQAAAEACAAAAAAAA/+IB2ElDQ19QUk9GSUxFAAEBAAAByGxjbXMCEAAAbW50clJHQiBYWVogB+IAAwAUAAkADgAdYWNzcE1TRlQAAAAAc2F3c2N0cmwAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1oYW5knZEAPUCAsD1AdCyBnqUijgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJZGVzYwAAAPAAAABfY3BydAAAAQwAAAAMd3RwdAAAARgAAAAUclhZWgAAASwAAAAUZ1hZWgAAAUAAAAAUYlhZWgAAAVQAAAAUclRSQwAAAWgAAABgZ1RSQwAAAWgAAABgYlRSQwAAAWgAAABgZGVzYwAAAAAAAAAFdVJHQgAAAAAAAAAAAAAAAHRleHQAAAAAQ0MwAFhZWiAAAAAAAADzVAABAAAAARbJWFlaIAAAAAAAAG+gAAA48gAAA49YWVogAAAAAAAAYpYAALeJAAAY2lhZWiAAAAAAAAAkoAAAD4UAALbEY3VydgAAAAAAAAAqAAAAfAD4AZwCdQODBMkGTggSChgMYg70Ec8U9hhqHC4gQySsKWoufjPrObM/1kZXTTZUdlwXZB1shnVWfo2ILJI2nKunjLLbvpnKx9dl5Hfx+f///9sAQwAGBAUGBQQGBgUGBwcGCAoQCgoJCQoUDg8MEBcUGBgXFBYWGh0lHxobIxwWFiAsICMmJykqKRkfLTAtKDAlKCko/9sAQwEHBwcKCAoTCgoTKBoWGigoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo/8IAEQgCQAQAAwERAAIRAQMRAf/EABsAAAIDAQEBAAAAAAAAAAAAAAIDAAEEBQYH/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAECAwQFBv/aAAwDAQACEAMQAAAB+VMgRqwgRkCMgRkCxQIECMgRkCBbIEagQIFhQWECBAgQIECBAgRkCBAgQIECBAgQIECBAjLFAgQIECwjIECMgREZAgWlGQIFhGQVhGQIECxWyBYQCHAIIBDtOwgGnadMtBqiHQEnaDVHNWFBAgEqiCHaLTg7CIIZJ0ECIgQcR5CuCA==",
+  "proofs": [
+    "621accb08a549d314c2a55e7ad5917be24e2614fbe4666853227a1eb00e78c0e",
+    "d5bcd1a55ebb50486874e00a69287e16e0d2e648bb1ad8355ea034c8df749e9b",
+    "a7041c394a5d301cfa2c0f78642b8c1a54324d5e92e2ba70fbd25de2c951e753",
+    "76f1e72be621ca9e7ab204538e4df1feca45ff0df94d87c09a69c6052b5a165c",
+    "878fbf9448893d6a9e2c4676505c14d21b614a1f2a234678d8b9b08bdd9fda63",
+    "e9fb30ef1eb1312c2120da7f06b3c51028d8b18491e6ecee1ab325965432f9d9",
+    "189e01eb7f5c55f38a9cf82aceea1659ad3b1c0696392c1be9a3d44128d40fe3",
+    "f8f0cc95b7770996e2ce314d2c729d32c56d8372c9fca01d96bca40634cd3415"
   ]
 }
 ```
@@ -109,7 +113,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 ---
 
 ## DECISION LOG AND FUTURE GOALS
-* ✔ Write whole app using hexagonal architecture
+* ✔ Write whole app using hexagonal architecture with easy transition to CQRS app
 * ✔ Provide base functionalities
 * ✔ Enable easy hashing/encoding algorithm extension
 * ✔ Serve proofs using Merkle Proof Tree
@@ -117,4 +121,4 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 * ❌ Add E2E tests using Testcontainers
 * ❌ Extend current way of handling hashing and encoding to let user choose specific hashing/encoding algorithm <- only application layer will be touched
 * ❌ Rewrite app using RUST
-* ❌ Add a way to dynamically add files and pieces
+* ❌ Add a way to dynamically add files and pieces - Merkelized Tree

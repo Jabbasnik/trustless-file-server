@@ -8,6 +8,9 @@ import static org.apache.commons.codec.binary.Hex.encodeHexString;
 import static org.apache.commons.codec.digest.DigestUtils.sha1;
 import static org.apache.commons.codec.digest.DigestUtils.sha256;
 
+/**
+ * Possible hashing algorithms.
+ */
 public enum HashingAlgo {
     SHA_256("SHA-256") {
         @Override

@@ -3,6 +3,9 @@ package pl.jackowiak.trustlessfileserver.domain.model;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+/**
+ * The Merkle node.
+ */
 public final class MerkleNode extends MerkleTreeElement {
 
     private final MerkleTreeElement left;

@@ -22,11 +22,14 @@ import java.util.List;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_256;
 
+/**
+ * Handles loading file on application startup.
+ */
 @Component
 class FileLoader {
 
     private static final Logger LOG = LoggerFactory.getLogger(FileLoader.class);
-    private static final String DEFAULT_FILE = "/icons_rgb_circle.png";
+    private static final String DEFAULT_FILE = "/pug-in-space.jpg";
     private static final String DEFAULT_HASHING_ALGO = SHA_256;
     private static final String DEFAULT_ENCODING_ALGO = "BASE_64";
     private static final int DEFAULT_PIECE_SIZE = 1024;

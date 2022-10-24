@@ -2,6 +2,9 @@ package pl.jackowiak.trustlessfileserver.domain.model;
 
 import java.util.Objects;
 
+/**
+ * The common Merkle tree element.
+ */
 public abstract class MerkleTreeElement {
 
     protected MerkleHash hash;

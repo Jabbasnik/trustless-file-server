@@ -6,6 +6,9 @@ import java.util.StringJoiner;
 import static pl.jackowiak.trustlessfileserver.domain.model.EncodingAlgo.parseEncodingAlgo;
 import static pl.jackowiak.trustlessfileserver.domain.model.HashingAlgo.parseHashingAlgo;
 
+/**
+ * Piece persist action.
+ */
 public final class PersistPiece {
 
     private final MerkleHash merkleHash;
@@ -21,13 +24,13 @@ public final class PersistPiece {
     private static HashingAlgo determineHashingAlgo(String hashingAlgo) {
         return parseHashingAlgo(hashingAlgo)
                 .orElseThrow(
-                        () -> new IllegalArgumentException("Unable to hash piece. Reason: No hashing algorithm present in hashing algorithms registry"));
+                        () -> new IllegalArgumentException("Unable to hash piece. Reason: No hashing algorithm present in hashing algorithms registry."));
     }
 
     private static EncodingAlgo determineEncodingAlgo(String encodingAlgo) {
         return parseEncodingAlgo(encodingAlgo)
                 .orElseThrow(
-                        () -> new IllegalArgumentException("Unable to hash piece. Reason: No hashing algorithm present in hashing algorithms registry"));
+                        () -> new IllegalArgumentException("Unable to encode piece. Reason: No encode algorithm present in encode algorithms registry."));
     }
 
     public MerkleHash getMerkleHash() {

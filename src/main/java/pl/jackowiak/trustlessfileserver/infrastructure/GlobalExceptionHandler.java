@@ -8,6 +8,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
+/**
+ * Simple error controller.
+ */
 @RestControllerAdvice
 class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 

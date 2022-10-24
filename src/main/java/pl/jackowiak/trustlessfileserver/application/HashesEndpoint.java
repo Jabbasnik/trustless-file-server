@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.jackowiak.trustlessfileserver.application.model.Hashes;
 import pl.jackowiak.trustlessfileserver.application.model.PieceData;
+import pl.jackowiak.trustlessfileserver.domain.model.MerkleEncoded;
 import pl.jackowiak.trustlessfileserver.domain.model.MerkleHash;
+import pl.jackowiak.trustlessfileserver.domain.model.MerkleTreeElement;
 import pl.jackowiak.trustlessfileserver.domain.model.PieceProof;
 import pl.jackowiak.trustlessfileserver.domain.ports.in.ServerFiles;
 
@@ -19,6 +21,9 @@ import java.util.Map;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.ResponseEntity.badRequest;
 
+/**
+ * Controller serving file server endpoints.
+ */
 @RestController
 @RequestMapping("/")
 class HashesEndpoint {
@@ -55,8 +60,10 @@ class HashesEndpoint {
 
     private PieceData mapToPieceData(PieceProof proofForPiece) {
         var stringProofs = proofForPiece.proofs().stream()
-                .map(element -> element.hash().getHexString())
+                .map(MerkleTreeElement::hash)
+                .map(MerkleHash::getHexString)
                 .toList();
-        return new PieceData(proofForPiece.content().getHexString(), stringProofs);
+        var content = proofForPiece.content();
+        return new PieceData(content.getHexString(), stringProofs);
     }
 }

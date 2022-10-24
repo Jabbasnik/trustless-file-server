@@ -15,6 +15,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toMap;
 
+/**
+ * The in memory repository implementation. Currently used as default repository.
+ */
 public class InMemoryFileServerRepository implements FileServerRepository {
 
     private final Map<MerkleHash, List<PieceHash>> MERKLE_DB = new ConcurrentHashMap<>();
@@ -60,5 +63,4 @@ public class InMemoryFileServerRepository implements FileServerRepository {
     public void testPersistMerkleTree(MerkleHash hash, List<PieceHash> storedPiecesHashes) {
         MERKLE_DB.put(hash, storedPiecesHashes);
     }
-
 }

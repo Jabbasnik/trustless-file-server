@@ -7,6 +7,9 @@ import pl.jackowiak.trustlessfileserver.domain.model.PieceProof;
 
 import java.util.Map;
 
+/**
+ * Handles action related to serving application endpoints.
+ */
 public interface ServerFiles {
     Map<MerkleHash, Integer> availableFiles();
 

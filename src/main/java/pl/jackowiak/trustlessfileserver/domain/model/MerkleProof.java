@@ -10,6 +10,10 @@ import java.util.List;
 import static java.lang.String.format;
 import static java.util.Collections.singletonList;
 
+/**
+ * Creates proofs for given merkle trees and checks for leaf inclusion. Creates Merkle Proof Tree which is then used to
+ * determine final leaf proofs.
+ */
 public final class MerkleProof {
 
     private MerkleProof() {
