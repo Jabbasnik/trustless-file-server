@@ -1,0 +1,59 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'java'
+    id "com.palantir.docker" version '0.34.0'
+}
+
+group = 'pl.jackowiak'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+//ext {
+//    set('testcontainersVersion', "1.17.4")
+//}
+
+bootJar {
+    archiveFileName = "trustless-file-server.jar"
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+    implementation group: 'io.vavr', name: 'vavr', version: '0.10.4'
+    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'org.testcontainers:junit-jupiter' //TODO: introduce E2E tests
+}
+
+//dependencyManagement {
+//    imports {
+//        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+//    }
+//}
+
+bootRun {
+    if (project.hasProperty('args')) {
+        args project.args.split('\\s+')
+    }
+}
+
+task filesCopy(type: Copy) {
+    dependsOn bootJar
+    from(project.configurations.default) {
+        into 'lib'
+    }
+    from "${buildDir}/libs/trustless-file-server.jar"
+    into "${buildDir}/application"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
